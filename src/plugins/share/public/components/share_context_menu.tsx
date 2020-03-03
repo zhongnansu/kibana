@@ -24,10 +24,11 @@ import { i18n } from '@kbn/i18n';
 import { EuiContextMenuPanelDescriptor } from '@elastic/eui';
 import { EuiContextMenu } from '@elastic/eui';
 
-import { HttpStart } from 'kibana/public';
+import { CoreStart, HttpStart } from 'kibana/public';
 
 import { UrlPanelContent } from './url_panel_content';
 import { ShareMenuItem, ShareContextMenuPanelItem } from '../types';
+import { DownloadUi } from './download_panel_content';
 
 interface Props {
   allowEmbed: boolean;
@@ -40,6 +41,7 @@ interface Props {
   onClose: () => void;
   basePath: string;
   post: HttpStart['post'];
+  notification: CoreStart['notifications'];
 }
 
 export class ShareContextMenu extends Component<Props> {
@@ -112,6 +114,26 @@ export class ShareContextMenu extends Component<Props> {
         icon: 'console',
         panel: embedPanel.id,
         sortOrder: 0,
+      });
+
+      // Download code starts here
+      const downloadPanel = {
+        id: panels.length + 1,
+        title: i18n.translate('share.contextMenu.downloadCodePanelTitle', {
+          defaultMessage: 'Sharing',
+        }),
+        content: (
+          <DownloadUi post={this.props.post} format="pdf" notifications={this.props.notification} />
+        ),
+      };
+      panels.push(downloadPanel);
+      menuItems.push({
+        name: i18n.translate('share.contextMenu.downloadCodeLabel', {
+          defaultMessage: 'Sharing',
+        }),
+        icon: 'document',
+        panel: downloadPanel.id,
+        sortOrder: 1,
       });
     }
 
