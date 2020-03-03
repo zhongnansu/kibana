@@ -1,0 +1,8 @@
+{
+  "id": "downloadButton",
+  "version": "7.6.1",
+  "server": true,
+  "ui": true,
+  "requiredPlugins": ["navigation"],
+  "optionalPlugins": []
+}

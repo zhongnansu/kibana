@@ -1,0 +1,10 @@
+{
+    "prefix": "downloadButton",
+    "paths": {
+      "downloadButton": "."
+    },
+    "translations": [
+      "translations/ja-JP.json"
+    ]
+  }
+  
