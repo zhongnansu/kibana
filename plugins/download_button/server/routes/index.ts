@@ -8,7 +8,6 @@ let settings = {
   width: 1440,
   height: 2560,
   url: '',
-  filename: "default_name",
   isLandScape: false,
   deviceScaleFactor: 1,
   pageRanges: "",
